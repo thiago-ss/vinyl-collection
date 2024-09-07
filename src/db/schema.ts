@@ -1,10 +1,26 @@
-import { serial, text, integer, timestamp, pgTable } from "drizzle-orm/pg-core";
+import {
+  serial,
+  text,
+  integer,
+  timestamp,
+  pgTable,
+  jsonb,
+} from "drizzle-orm/pg-core";
+
+type Track = {
+  id: string;
+  name: string;
+  duration: number;
+};
 
 export const vinyls = pgTable("vinyls", {
   id: serial("id").primaryKey(),
   title: text("title").notNull(),
   artist: text("artist").notNull(),
-  year: integer("year").notNull(),
+  totalTracks: integer("total_tracks"),
+  tracks: jsonb("tracks").$type<Track[]>(),
+  releaseDate: text("release_date"),
+  coverImage: text("cover_image"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 

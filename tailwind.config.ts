@@ -51,10 +51,29 @@ const config: Config = {
           "5": "hsl(var(--chart-5))",
         },
       },
+      animation: {
+        float: "float 3s ease-in-out infinite",
+        'needle-move': 'needle 2s ease-in-out infinite',
+      },
+      keyframes: {
+        float: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-5px)" },
+        },
+        needle: {
+          '0%, 100%': { transform: 'rotate(-5deg)' },
+          '50%': { transform: 'rotate(5deg)' },
+        }
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+      },
+    },
+    variants: {
+      extend: {
+        animation: ['responsive', 'hover', 'focus'],
       },
     },
   },

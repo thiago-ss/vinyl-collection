@@ -1,0 +1,1 @@
+ALTER TABLE "vinyls" DROP COLUMN IF EXISTS "year";
